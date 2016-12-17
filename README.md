@@ -1,2 +1,2 @@
-# xor_tensorflow
+# Neural Network XOR
 train neural net on xor function

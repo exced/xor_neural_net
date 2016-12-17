@@ -6,6 +6,9 @@ import tensorflow as tf
 
 def main(_):
 
+  # Feed Datas
+  x_d = [[0,0],[0,1],[1,0],[1,1]]
+  y_d = [[0],[1],[1],[0]]
   # Create the model
   x_ = tf.placeholder(tf.float32, [4, 2]) #correct input
   y_ = tf.placeholder(tf.float32, [4, 1]) #correct output
@@ -23,10 +26,10 @@ def main(_):
   tf.global_variables_initializer().run()
   # Train
   for i in range(10000):
-    sess.run(train_step, feed_dict={x_: [[0,0],[0,1],[1,0],[1,1]], y_: [[0],[1],[1],[0]]})
+    sess.run(train_step, feed_dict={x_: x_d, y_: y_d})
     if i % 100 == 0:
-		  print('y ', sess.run(y, feed_dict={x_: [[0,0],[0,1],[1,0],[1,1]], y_: [[0],[1],[1],[0]]}))
-		  print('cost ', sess.run(cost, feed_dict={x_: [[0,0],[0,1],[1,0],[1,1]], y_: [[0],[1],[1],[0]]}))
+		  print('y ', sess.run(y, feed_dict={x_: x_d, y_: y_d}))
+		  print('cost ', sess.run(cost, feed_dict={x_: x_d, y_: y_d}))
 
 if __name__ == '__main__':
   tf.app.run(main=main)

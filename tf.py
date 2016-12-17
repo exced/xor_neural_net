@@ -19,8 +19,8 @@ def main(_):
   layer2 = tf.sigmoid(tf.matmul(x_, t1) + b1)
   y = tf.sigmoid(tf.matmul(layer2, t2) + b2) #training output
 
-  loss = tf.nn.l2_loss(y_ - y)
-  train_step = tf.train.GradientDescentOptimizer(0.5).minimize(loss)
+  cost = tf.reduce_mean(-((y_ * tf.log(y)) + ((1 - y_) * tf.log(1.0 - y))))
+  train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cost)
 
   sess = tf.InteractiveSession()
   tf.global_variables_initializer().run()
